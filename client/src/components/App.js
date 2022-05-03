@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
-import RecipeList from "../pages/RecipeList";
-import NewRecipe from "../pages/NewRecipe";
+// import RecipeList from "../pages/RecipeList";
+// import NewRecipe from "../pages/NewRecipe";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,12 +24,12 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
-          <Route path="/new">
+          {/* <Route path="/new">
             <NewRecipe user={user} />
           </Route>
           <Route path="/">
             <RecipeList />
-          </Route>
+          </Route> */}
         </Switch>
       </main>
     </>
