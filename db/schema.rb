@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 2022_05_03_193806) do
     t.string "breed"
     t.text "bio"
     t.string "image_url"
+    t.bigint "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_pets_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,4 +56,5 @@ ActiveRecord::Schema.define(version: 2022_05_03_193806) do
   add_foreign_key "appointments", "pets"
   add_foreign_key "appointments", "users", column: "owner_id"
   add_foreign_key "appointments", "users", column: "walker_id"
+  add_foreign_key "pets", "users", column: "owner_id"
 end

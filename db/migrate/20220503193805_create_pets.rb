@@ -7,6 +7,8 @@ class CreatePets < ActiveRecord::Migration[6.1]
       t.string :breed
       t.text :bio
       t.string :image_url
+      t.references :owner, null: false, foreign_key: {to_table: :users}
+
 
       t.timestamps
     end
