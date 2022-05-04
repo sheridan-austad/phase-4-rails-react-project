@@ -13,6 +13,8 @@ function App() {
     fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
+        // set to user in context - authentication
+        // global versus local state
       }
     });
   }, []);

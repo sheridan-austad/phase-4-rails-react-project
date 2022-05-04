@@ -6,7 +6,12 @@ class User < ApplicationRecord
   
   has_secure_password
 
+  scope :walkers, -> {where(role: 1)}
   validates :username, presence: true, uniqueness: true
+  # valdates :password, 
+  # limits the password
+  # validations - 3 => line 7, and two on line 10
+  # don't use 3rd part auth
   enum role: %i(client walker admin)
 
 end

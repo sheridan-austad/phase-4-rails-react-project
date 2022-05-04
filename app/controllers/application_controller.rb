@@ -2,15 +2,20 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
   
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
+  rescue_from ActiveRecord::RecordNotFound, with: :not_authorized
+  
   before_action :authorize
-
+  # comment out 7 if plan on building auth later on
+  
   private
 
-  def authorize
-    @current_user = User.find_by(id: session[:user_id])
+  def not_authorized
+   render json: { errors: ["Not authorized"] }, status: :unauthorized 
+  end 
 
-    render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
+  def authorize
+    @current_user ||= User.find(session[:user_id])
+    
   end
 
   def render_unprocessable_entity_response(exception)
@@ -18,3 +23,8 @@ class ApplicationController < ActionController::API
   end
 
 end
+
+# embed appointment form into the walker page/card
+# or leave the form on the own and do dropdown for the walker with names
+# use lab - material UI for cards
+  # put the cards inside the container - UI
