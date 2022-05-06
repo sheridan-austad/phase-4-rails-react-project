@@ -13,7 +13,7 @@ function PetCard({image_url,name, age, species, breed, bio}) {
                         Pet: {image_url}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
-                         Name: {name}
+                        Name: {name}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
                         Age: {age}

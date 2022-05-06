@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
 
+
 function SignUpForm({ onLogin }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -8,9 +9,11 @@ function SignUpForm({ onLogin }) {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [bio, setBio] = useState("");
+  const [user, setUser] = useState(true);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+ 
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
@@ -36,6 +39,15 @@ function SignUpForm({ onLogin }) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+  }
+
+  const handleCheckboxChange = (e) => {
+    console.log('this is the checkbox')
+    console.log(user)
+    setUser({    
+       ...user,
+      [e.target.name]: e.target.value
+    })
   }
 
   return (
@@ -99,6 +111,8 @@ function SignUpForm({ onLogin }) {
           onChange={(e) => setBio(e.target.value)}
         />
       </FormField>
+          <input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I own a pet<br />
+          <input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I want to be a walker<br />
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>

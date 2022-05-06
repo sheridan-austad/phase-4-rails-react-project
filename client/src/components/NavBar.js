@@ -15,13 +15,15 @@ function NavBar({ user, setUser }) {
   return (
     <Wrapper>
       <Logo>
-        <Link to="/">DogWalker</Link>
+        <Link to="/">Dog Walker</Link>
       </Logo>
       <Nav>
-        <Button as={Link} to="/api/walkers">
+        {/* ternary - if there is a user, display it,
+        if not suggest sign in */}
+        <Button as={Link} to="/walkers">
           Find a walker
         </Button>
-        <Button as={Link} to="/new">
+        <Button as={Link} to="/pets/new">
           Add a New Animal
         </Button>
         <Button variant="outline" onClick={handleLogoutClick}>
