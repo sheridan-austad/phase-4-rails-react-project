@@ -18,6 +18,9 @@ function NavBar({ user, setUser }) {
         <Link to="/">DogWalker</Link>
       </Logo>
       <Nav>
+        <Button as={Link} to="/api/walkers">
+          Find a walker
+        </Button>
         <Button as={Link} to="/new">
           Add a New Animal
         </Button>

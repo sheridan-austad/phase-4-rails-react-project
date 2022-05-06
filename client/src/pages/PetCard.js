@@ -3,9 +3,9 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 function PetCard({image_url,name, age, species, breed, bio}) {
-
-    return ( 
-
+    
+    return (
+        // <div className="box"> Welcome {user.owner.username}</div>
             <Card className="card" elevation={0}>
                 
                 <CardContent align="center">
@@ -16,7 +16,7 @@ function PetCard({image_url,name, age, species, breed, bio}) {
                          Name: {name}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
-                        Age:{age}
+                        Age: {age}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
                         Species: {species}

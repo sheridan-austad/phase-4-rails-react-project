@@ -4,8 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import PetList from "../pages/PetList";
 
 function OwnerPage({ user }) {
-console.log("Owner page")
-console.log(user)
+
   return (
     <>
     <main>

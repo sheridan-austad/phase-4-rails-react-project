@@ -24,7 +24,7 @@ function PetList({user}) {
       {userPets.length > 0 ? (
         userPets.map((pet) => (
           <PetCard key={pet.id} {...pet}/>
-
+          
           // <Recipe key={pet.id}>
           //   <Box>
           //     <h2>{pet.title}</h2>
