@@ -15,13 +15,13 @@ function Login({ onLogin }) {
           <LoginForm onLogin={onLogin} />
           <Divider />
           <p>
-            Don't have an account? &nbsp;
+            Don't have an account yet? &nbsp;
             <Button color="secondary" onClick={() => setShowLogin(false)}>
               Sign Up
             </Button>
           </p>
         </>
-      ) : (
+      ): (
         <>
           <SignUpForm onLogin={onLogin} />
           <Divider />
