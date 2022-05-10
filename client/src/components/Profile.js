@@ -1,12 +1,18 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import PetList from '../pages/PetList'
+import {UserContext} from './User'
 
-const Profile = ({ user }) => {
+function Profile() {
+  const {user} = useContext(UserContext);
+  if (!user) return <h2> Please Login to View Profile</h2>;
   return (
     <div>
-    <PetList user={user} />
+      {user && <h2>Welcome back {user.name}!</h2>}
+     <PetList /> 
+     {/* inside petlist - do we need to pass pets or pass it into petlist by itself
+     if user or if walker or inside the petlist component // */}
     </div>
-  )
+  );
 }
 
 export default Profile

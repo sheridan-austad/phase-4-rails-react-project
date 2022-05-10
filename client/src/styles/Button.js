@@ -37,6 +37,7 @@ const FillButton = styled(ButtonBase)`
 
   &:hover {
     opacity: 0.9;
+    color: black;
   }
 `;
 

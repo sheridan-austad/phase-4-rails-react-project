@@ -1,36 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
 
 
 function SignUpForm({ onLogin }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
   const [bio, setBio] = useState("");
   const [user, setUser] = useState(true);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
- 
+  const avatar = useRef(null);
+  
+  
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
+    const formData = new FormData(e.target)
+    debugger
     fetch("/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email,
-        username,
-        password,
-        password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        bio,
-      })
+      body: formData
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
@@ -50,8 +46,19 @@ function SignUpForm({ onLogin }) {
     })
   }
 
+
   return (
     <form onSubmit={handleSubmit}>
+      <FormField>
+        <Label htmlFor="name">Name</Label>
+        <Input
+          type="text"
+          id="name"
+          autoComplete="off"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormField>
       <FormField>
         <Label htmlFor="email">Email</Label>
         <Input
@@ -94,12 +101,12 @@ function SignUpForm({ onLogin }) {
         />
       </FormField>
       <FormField>
-        <Label htmlFor="imageUrl">Profile Image</Label>
+        <Label htmlFor="mediaUrl">Profile Image</Label>
         <Input
-          type="text"
-          id="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          type="file"
+          name="avatar"
+          ref={avatar} required
+          onChange={(e) => avatar.current=(e.target.value)}
         />
       </FormField>
       <FormField>

@@ -15,6 +15,10 @@ class Api::UsersController < ApplicationController
     users = User.walkers
     render json: users,  status: 200
   end
+  def index
+    users = User.owners
+    render json: users,  status: 200
+  end
 
   private
 

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :pets
     resources :appointments
     resources :users, only: [:index]
+    # GET walkers
+    # GET appointments
+    # make a new appt
+    # sign in as a walker versus an owner
   end
   # all other routes will be load our React application
   # this route definition matches:

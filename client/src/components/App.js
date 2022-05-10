@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext} from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
@@ -6,39 +6,28 @@ import PetCard from "../pages/PetCard";
 import PetList from "../pages/PetList";
 import NewPet from "../pages/NewPet";
 import Profile from "./Profile";
-import OwnerPage from "../pages/OwnerPage";
+import Home from "./Home";
+import Appointment from "../pages/Appointment";
 import SignUpForm from "./SignUpForm";
 import './App.css';
+import {UserContext } from "./User";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const {user, setUser} = useContext(UserContext);
   const history = useHistory();
 
-
   useEffect(() => {
-    // auto-login
     fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
-        // set to user in context - authentication
-        // global versus local state
       }
     });
   }, []);
 
-
-  function onLogin(userObj) {
-    setUser(userObj)
-    history.push("/profile") 
-  }
-
-  // context - user to global 
-  console.log(user)
-
   if (!user) 
   {
     console.log("Returning Login Page");
-    return <Login onLogin={setUser} />;
+    return <Login/>;
   }
   else
   {
@@ -51,7 +40,8 @@ function App() {
             <NewPet/>
           </Route>
          <Route path='/pets/:petId/appointments/new'>
-            {/* <PetList/>  */}
+            <PetList/> 
+            <Appointment user={user}/>
           </Route> 
           <Route path='/pets/:id'>
             <PetCard/>
@@ -66,25 +56,20 @@ function App() {
             <Login />
           </Route>
           <Route path="/profile">
-            <Profile user={user} />
+            <Profile/>
           </Route>
-          {/* CREATE PROFILE */}
           <Route path="/signup">
             <SignUpForm />
           </Route>
           <Route path="/">
-            {/* <Home /> */}
+            <Home />
           </Route>
           {/* CREATE HOME COMPONENT - Mission statement, etc. */}
           {/* Login HERE */}
 
         </Switch>
-        {/* { user.role === "owner" ? <OwnerPage user={user}/> : 
-        user.role === "walker" ? <div> Walker Page Not Found </div>: <div>Admin Page Not Found</div>}
-         */}
       </>
 
-      // CLEANER WAY TO DO THIS???
     );
   }
 }
