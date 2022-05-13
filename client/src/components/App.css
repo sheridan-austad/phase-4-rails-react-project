@@ -14,3 +14,28 @@
     justify-content: space-evenly;
     padding: 215px;
   }
+
+  .center {
+    box-shadow: 10px 10px 54px -6px;
+    border-width: 1pt;
+    border-color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+    width: 50%;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  h3, p {
+    text-align: center;
+    margin: top 2px;
+  }
+  h2 {
+    text-align: center;
+    margin-top: 50px;
+  }

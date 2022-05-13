@@ -20,18 +20,24 @@ function SignUpForm({ onLogin }) {
     setErrors([]);
     setIsLoading(true);
     const formData = new FormData(e.target)
-    debugger
-    fetch("/api/signup", {
+    formData.append("name", name)
+    formData.append("email", email)
+    formData.append("username", username)
+    formData.append("password", password)
+    formData.append("password_confirmation", passwordConfirmation)
+    formData.append("bio", bio)
+      // HOW DO I DIPLAY THE IMAGE ON THE PROFILE
+
+      fetch("/api/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: formData
-    }).then((r) => {
+    })
+    .then((r) => {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
-      } else {
+      } 
+      else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
@@ -45,7 +51,6 @@ function SignUpForm({ onLogin }) {
       [e.target.name]: e.target.value
     })
   }
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -105,7 +110,7 @@ function SignUpForm({ onLogin }) {
         <Input
           type="file"
           name="avatar"
-          ref={avatar} required
+          ref={avatar}
           onChange={(e) => avatar.current=(e.target.value)}
         />
       </FormField>
@@ -124,7 +129,7 @@ function SignUpForm({ onLogin }) {
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
       <FormField>
-        {errors.map((err) => (
+        {errors?.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
       </FormField>

@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React, { useState,  useRef } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-// import ReactMarkdown from "react-markdown";
-import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
+import { Button, Error, FormField, Input, Label, } from "../styles";
 
 function NewPet({ pet }) {
   const [name, setName] = useState("");
@@ -10,28 +9,26 @@ function NewPet({ pet }) {
   const [species, setSpecies] = useState("");
   const [breed, setBreed] = useState("");
   const [bio, setBio] = useState("");
-  const [image_url, setImage] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const photo = useRef(null);
+
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
+    const formData = new FormData(e.target)
+    formData.append("name", name)
+    formData.append("age", age)
+    formData.append("species", species)
+    formData.append("breed", breed)
+    formData.append("bio", bio)
     fetch("/api/new", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+      body: formData
       },
-      body: JSON.stringify({
-        name,
-        age,
-        species,
-        breed,
-        bio,
-        image_url
-      }),
-    }).then((r) => {
+      .then((r) => {
       setIsLoading(false);
       if (r.ok) {
         history.push("/");
@@ -70,7 +67,7 @@ function NewPet({ pet }) {
               type="text"
               id="species"
               value={species}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setSpecies(e.target.value)}
             />
           </FormField>
           <FormField>
@@ -79,7 +76,7 @@ function NewPet({ pet }) {
               type="text"
               id="breed"
               value={breed}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setBreed(e.target.value)}
             />
           </FormField>
           <FormField>
@@ -88,16 +85,16 @@ function NewPet({ pet }) {
               type="text"
               id="bio"
               value={bio}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setBio(e.target.value)}
             />
           </FormField>
           <FormField>
-            <Label htmlFor="image_url">Picture of your pet: </Label>
+            <Label htmlFor="mediaUrl">Picture of Your Pet: </Label>
             <Input
-              type="url"
-              id="image_url"
-              value={image_url}
-              onChange={(e) => setName(e.target.value)}
+              type="file"
+              id="photo"
+              ref={photo}
+              onChange={(e) => photo.current(e.target.value)}
             />
           </FormField>
           <FormField>

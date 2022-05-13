@@ -1,14 +1,14 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function Appointment() {
-  // const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState([]);
 
-  // useEffect(() => {
+  useEffect(() => {
     
-  //   fetch("/pets/:petId/appointments/new")
-  //     .then((r) => r.json())
-  //     .then(setAppointments);
-  // }, []);
+    fetch("/api/appointments")
+      .then((r) => r.json())
+      .then(setAppointments);
+  }, []);
   
   // const setAppointments = appointments.map(appointments => appointments === appointments)
 

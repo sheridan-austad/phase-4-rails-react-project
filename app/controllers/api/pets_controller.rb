@@ -5,4 +5,8 @@ class Api::PetsController < ApplicationController
         pets = Pet.preload(:walkers)
         render json: pets
     end
+    # def index
+    #     pets = Pet.preload(:owners)
+    #     render json: pets
+    # end
 end
