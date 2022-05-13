@@ -27,7 +27,7 @@ function NewPet({ pet }) {
     fetch("/api/new", {
       method: "POST",
       body: formData
-      },
+      })
       .then((r) => {
       setIsLoading(false);
       if (r.ok) {
