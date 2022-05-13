@@ -1,5 +1,5 @@
-import React, { useEffect, useContext,  setState} from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import PetCard from "../pages/PetCard";
@@ -14,7 +14,7 @@ import AppointmentList from "../pages/AppointmentList";
 
 function App() {
   const {user, setUser} = useContext(UserContext);
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
@@ -38,7 +38,6 @@ function App() {
             <NewPet/>
           </Route>
          <Route path='/api/appointments'>
-            <PetList/> 
             <AppointmentList/>
           </Route> 
           <Route path='/pets/:id'>

@@ -1,33 +1,19 @@
 import React, {useState,  useEffect, useContext} from 'react';
 import Appointment from './Appointment';
 import {UserContext} from '../components/User'
-import PetCard from "./PetCard";
-import { Button } from "../styles";
-import { Link } from "react-router-dom";
+// import PetCard from "./PetCard";
+// import { Button } from "../styles";
+// import { Link } from "react-router-dom";
 
 const AppointmentList = () => {
-    const [appointments, setAppointments] = useState([]);
+    // const [appointments, setAppointments] = useState([]);
     const {user} = useContext(UserContext);
 
-    useEffect(() => {
-        fetch("/api/appointments")
-         .then((r) => r.json())
-         .then(appt => setAppointments(appt));
-        }, []); 
-        
-    
-    let userappointments = [];
-    if(user.role === 'owner')
-    {userappointments = appointments.filter(appointment => appointment.owner.username === user.username);
-    } else if (user.role === 'walker')
-    {userappointments = appointments.filter(appointment => appointment.walker.username === user.username);
-    } 
-
-    const userPets = appointments.filter(pet => pet.owner.username === user.username)
-
+    // const userPets = user.pets
+    //       console.log(userPets)
   return (
     <div>
-        <div className="wrapper">
+        {/* <div className="wrapper">
       {userPets.length > 0 ? (
         userPets.map((pet) => (
           <PetCard key={pet.id} {...pet}/>
@@ -39,9 +25,10 @@ const AppointmentList = () => {
             Add an animal
           </Button>
         </>
-      )}
-    </div>
-        <Appointment key={appointments}/>
+      )} */}
+    {/* </div> */}
+        <h3 className="title">Here Are Your Appointments!</h3>
+        {user.appointments.map((appointment) => <Appointment key={appointment.id} {...appointment}/>)}
     </div>
   )
 }

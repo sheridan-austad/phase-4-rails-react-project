@@ -123,8 +123,8 @@ function SignUpForm({ onLogin }) {
           onChange={(e) => setBio(e.target.value)}
         />
       </FormField>
-          <input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I own a pet<br />
-          <input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I want to be a walker<br />
+          {user === user.owner ? <input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I own a pet<br /> : user === user.walker<input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I want to be a walker<br />}
+       
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>

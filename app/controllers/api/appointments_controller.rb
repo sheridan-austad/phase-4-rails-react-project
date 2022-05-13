@@ -1,6 +1,6 @@
 class Api::AppointmentsController < ApplicationController
     def index
-        appointments = Appointment.all
+        appointments = @current_user.walker? ? @current_user.owned_appointments : @current_user.created_appointments
         render json: appointments
     end
 

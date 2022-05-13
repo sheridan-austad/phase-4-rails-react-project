@@ -9,26 +9,26 @@ function PetList() {
   const [pets, setPets] = useState([]);
   const {user} = useContext(UserContext);
  
-  useEffect(() => {
+  // useEffect(() => {
     // if the location is pets fire the call
     // condition ? exprIfTrue : exprIfFalse
-    fetch("/api/pets")
-      .then((r) => r.json())
-      .then(setPets);
-  }, []);
+  //   fetch("/api/pets")
+  //     .then((r) => r.json())
+  //     .then(setPets);
+  // }, []);
 // before pets.map 
-  const userPets = pets.filter(pet => pet.owner.username === user.username)
+  // const user.pets = pets.filter(pet => pet.owner.username === user.username)
   
   return (
     <div className="wrapper">
-      {userPets.length > 0 ? (
-        userPets.map((pet) => (
+      {user.pets.length > 0 ? (
+        user.pets.map((pet) => (
           <PetCard key={pet.id} {...pet}/>
         ))
       ) : (
         <>
-          <h2>No animals are listed under your name</h2>
-          <Button as={Link} to="/new">
+          <h2>No Animals Are Listed Under Your Name</h2>
+          <Button as={Link} to="/pets/new">
             Add an animal
           </Button>
         </>
