@@ -9,7 +9,7 @@ const Home = () => {
               <p> click any of the buttons above to explore </p>
           </div>
           <div>
-              <img src="https://st2.depositphotos.com/1994497/5766/v/600/depositphotos_57660545-stock-illustration-dog-walker.jpg" alt="walking dogs" class="center" />
+              <img src="https://st2.depositphotos.com/1994497/5766/v/600/depositphotos_57660545-stock-illustration-dog-walker.jpg" alt="walking dogs" className="center" />
           </div>
       </div>
   )

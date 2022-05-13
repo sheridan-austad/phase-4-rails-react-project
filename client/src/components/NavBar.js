@@ -23,7 +23,7 @@ function NavBar({ user, setUser }) {
         <Button as={Link} to="/profile">
           Profile
         </Button>
-        <Button as={Link} to="/pets/:petId/appointments/new">
+        <Button as={Link} to="/api/appointments">
           Appointments
         </Button>
         <Button as={Link} to="/walkers">

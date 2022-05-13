@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from "react";
+import React, { useEffect, useContext,  setState} from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
@@ -7,10 +7,10 @@ import PetList from "../pages/PetList";
 import NewPet from "../pages/NewPet";
 import Profile from "./Profile";
 import Home from "./Home";
-import Appointment from "../pages/Appointment";
 import SignUpForm from "./SignUpForm";
 import './App.css';
 import {UserContext } from "./User";
+import AppointmentList from "../pages/AppointmentList";
 
 function App() {
   const {user, setUser} = useContext(UserContext);
@@ -26,12 +26,10 @@ function App() {
 
   if (!user) 
   {
-    console.log("Returning Login Page");
     return <Login/>;
   }
   else
   {
-    console.log("Returning Full Page")
     return (
       <>
         <NavBar user={user} setUser={setUser} />
@@ -39,9 +37,9 @@ function App() {
           <Route path='/pets/new'>
             <NewPet/>
           </Route>
-         <Route path='/pets/:petId/appointments/new'>
+         <Route path='/api/appointments'>
             <PetList/> 
-            <Appointment user={user}/>
+            <AppointmentList/>
           </Route> 
           <Route path='/pets/:id'>
             <PetCard/>
