@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
+import { Button, Error, Input, FormField, Label, Textarea, Box } from "../styles";
 
 
 function SignUpForm({ onLogin }) {
@@ -26,9 +26,9 @@ function SignUpForm({ onLogin }) {
     formData.append("password", password)
     formData.append("password_confirmation", passwordConfirmation)
     formData.append("bio", bio)
-      // HOW DO I DIPLAY THE IMAGE ON THE PROFILE
-
-      fetch("/api/signup", {
+    // HOW DO I DIPLAY THE IMAGE ON THE PROFILE
+    
+    fetch("/api/signup", {
       method: "POST",
       body: formData
     })
@@ -43,9 +43,9 @@ function SignUpForm({ onLogin }) {
     });
   }
 
+  
   const handleCheckboxChange = (e) => {
-    console.log('this is the checkbox')
-    console.log(user)
+    console.log(user.role)
     setUser({    
        ...user,
       [e.target.name]: e.target.value
@@ -123,8 +123,14 @@ function SignUpForm({ onLogin }) {
           onChange={(e) => setBio(e.target.value)}
         />
       </FormField>
-          {user === user.owner ? <input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I own a pet<br /> : user === user.walker<input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I want to be a walker<br />}
-       
+        <Box>
+           {/* {(<input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I own a pet<br />) ? 
+            {user.role === 0}
+          : 
+         (<input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I want to be a walker<br />) ?
+            {user.role === 1}
+           } */}
+        </Box>
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
