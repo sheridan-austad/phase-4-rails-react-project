@@ -9,6 +9,7 @@ function SignUpForm({ onLogin }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [bio, setBio] = useState("");
+  const [role, setRole] = useState("");
   const [user, setUser] = useState(true);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,7 @@ function SignUpForm({ onLogin }) {
     formData.append("password", password)
     formData.append("password_confirmation", passwordConfirmation)
     formData.append("bio", bio)
+    formData.append("role", role)
     // HOW DO I DIPLAY THE IMAGE ON THE PROFILE
     
     fetch("/api/signup", {
@@ -41,15 +43,6 @@ function SignUpForm({ onLogin }) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
-  }
-
-  
-  const handleCheckboxChange = (e) => {
-    console.log(user.role)
-    setUser({    
-       ...user,
-      [e.target.name]: e.target.value
-    })
   }
 
   return (
@@ -111,7 +104,7 @@ function SignUpForm({ onLogin }) {
           type="file"
           name="avatar"
           ref={avatar}
-          onChange={(e) => avatar.current=(e.target.value)}
+          onChange={(e) => avatar(e.target.value)}
         />
       </FormField>
       <FormField>
@@ -124,12 +117,28 @@ function SignUpForm({ onLogin }) {
         />
       </FormField>
         <Box>
-           {/* {(<input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I own a pet<br />) ? 
-            {user.role === 0}
-          : 
-         (<input onChange={handleCheckboxChange} type="checkbox" name="completed" value={user} />I want to be a walker<br />) ?
-            {user.role === 1}
-           } */}
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value="owner"
+              checked={role === "owner"}
+              onChange={(e) => setRole(e.target.value)}
+            />
+            I Own a Pet
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value="walker"
+              checked={role === "walker"}
+              onChange={(e) => setRole(e.target.value)}
+            />
+            I Want to be a Walker
+          </label>
+        </div>
         </Box>
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>

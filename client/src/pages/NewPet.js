@@ -17,6 +17,7 @@ function NewPet({ pet }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setErrors([]);
     setIsLoading(true);
     const formData = new FormData(e.target)
     formData.append("name", name)
@@ -24,7 +25,8 @@ function NewPet({ pet }) {
     formData.append("species", species)
     formData.append("breed", breed)
     formData.append("bio", bio)
-    fetch("/api/new", {
+    // formData.append("photo", photo)
+    fetch("/api/pets", {
       method: "POST",
       body: formData
       })
@@ -94,7 +96,7 @@ function NewPet({ pet }) {
               type="file"
               id="photo"
               ref={photo}
-              onChange={(e) => photo.current(e.target.value)}
+              onChange={(e) => photo(e.target.value)}
             />
           </FormField>
           <FormField>
@@ -109,15 +111,6 @@ function NewPet({ pet }) {
           </FormField>
         </form>
       </WrapperChild>
-      {/* <WrapperChild>
-        <h1>{name}</h1>
-        <p>
-          <em>Time to Complete: {age} minutes</em>
-          &nbsp;·&nbsp;
-          <cite>By {pet}</cite>
-        </p>
-        <ReactMarkdown>{species}</ReactMarkdown>
-      </WrapperChild> */}
     </Wrapper>
   );
 }

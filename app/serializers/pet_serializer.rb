@@ -1,5 +1,7 @@
 class PetSerializer < ActiveModel::Serializer
+  # shows what is allowed under pets
   attributes :id, :name, :age, :species, :breed, :bio, :photo, :owner
+  # has many walkers, 
   has_many :walkers,  serializer: UserSerializer
   belongs_to :owner,  serializer: UserSerializer
 
