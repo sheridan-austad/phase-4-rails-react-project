@@ -104,7 +104,7 @@ function SignUpForm({ onLogin }) {
           type="file"
           name="avatar"
           ref={avatar}
-          onChange={(e) => avatar(e.target.value)}
+          onChange={(e) => avatar.current=(e.target.value)}
         />
       </FormField>
       <FormField>

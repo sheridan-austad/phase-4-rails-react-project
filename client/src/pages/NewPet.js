@@ -12,10 +12,12 @@ function NewPet({ pet }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  const photo = useRef(null);
+  // const newPhoto = useRef();
+  const [photo, setPhoto] = useState(null);
 
 
   function handleSubmit(e) {
+    console.log("Hello, I'm submitting now")
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
@@ -25,7 +27,8 @@ function NewPet({ pet }) {
     formData.append("species", species)
     formData.append("breed", breed)
     formData.append("bio", bio)
-    // formData.append("photo", photo)
+    // formData.append("photo", setPhoto)
+
     fetch("/api/pets", {
       method: "POST",
       body: formData
@@ -39,7 +42,8 @@ function NewPet({ pet }) {
       }
     });
   }
-
+console.log("Next, I'm going to return...")
+console.log()
   return (
     <Wrapper>
       <WrapperChild>
@@ -91,12 +95,16 @@ function NewPet({ pet }) {
             />
           </FormField>
           <FormField>
+            {/* It breaks when I go to attach a photo */}
+            {/* it resets the whole page and erases everything there */}
+            {/* if I change line 4 to value instead of ref, it says the owner must not be blank */}
+            {/* when changed to useRef, doesn't instantly break, but does say owner must exist */}
             <Label htmlFor="mediaUrl">Picture of Your Pet: </Label>
             <Input
               type="file"
               id="photo"
-              ref={photo}
-              onChange={(e) => photo(e.target.value)}
+              value={photo}
+              onChange={(e) => setPhoto(e.target.value)}
             />
           </FormField>
           <FormField>
