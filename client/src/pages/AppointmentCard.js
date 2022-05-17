@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 
 
-function Appointment({pet_id, owner,  walker, walk_time, walk_date, comments}) {
+function AppointmentCard({pet_id, owner,  walker, walk_time, walk_date, comments}) {
   
   return (
  <div>
@@ -41,4 +41,4 @@ function Appointment({pet_id, owner,  walker, walk_time, walk_date, comments}) {
 }
 
 
-export default Appointment
+export default AppointmentCard

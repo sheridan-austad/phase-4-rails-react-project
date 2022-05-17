@@ -6,6 +6,7 @@ import PetCard from "../pages/PetCard";
 import PetList from "../pages/PetList";
 import NewPet from "../pages/NewPet";
 import Profile from "./Profile";
+import WalkerProfile from "./WalkerProfile";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import './App.css';
@@ -54,6 +55,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile/>
+          </Route>
+          <Route path="/walkers">
+            <WalkerProfile/>
           </Route>
           <Route path="/signup">
             <SignUpForm />
