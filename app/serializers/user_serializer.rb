@@ -1,4 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
   attributes :id, :username, :avatar, :bio, :role, :name, :appointments
   has_many :pets,  serializer: PetSerializer
   has_many :pets_to_walk,  serializer: PetSerializer
@@ -6,7 +7,8 @@ class UserSerializer < ActiveModel::Serializer
   # one for the walker to not see the email
   def avatar
     return nil unless object.avatar.attached?
-    object.avatar.blob.attributes.slice('filename', 'byte_size').merge(url: object.avatar).tap { |attrs| attrs['name'] = attrs.delete('filename') }
+    # binding.pry
+    object.avatar.blob.attributes.slice('filename', 'byte_size').merge(url: rails_blob_path(object.avatar, only_path: true)).tap { |attrs| attrs['name'] = attrs.delete('filename') }
   end
 
   def appointments

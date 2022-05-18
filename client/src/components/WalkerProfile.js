@@ -1,13 +1,13 @@
-import React , {useContext} from 'react'
+// import React , {useContext} from 'react'
 import { Button } from "../styles";
-import {UserContext} from './User';
+// import {UserContext} from './User';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 function WalkerProfile({walker}) {
-  const {user} = useContext(UserContext);
-  if (!user) return <h2> Please Login to View Profile</h2>;
+//   const {user} = useContext(UserContext);
+//   if (!user) return <h2> Please Login to View Profile</h2>;
   console.log(walker?.name)
   return (
     <div>

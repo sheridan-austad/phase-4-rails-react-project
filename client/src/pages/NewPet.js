@@ -1,9 +1,9 @@
-import React, { useState,  useRef } from "react";
+import React, { useState,  useRef, useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, } from "../styles";
 
-function NewPet({ pet }) {
+function NewPet() {
   const [name, setName] = useState("");
   const [age, setAge] = useState();
   const [species, setSpecies] = useState("");
@@ -12,8 +12,8 @@ function NewPet({ pet }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  // const newPhoto = useRef();
-  const [photo, setPhoto] = useState(null);
+  const photo = useRef(null);
+  // const [photo, setPhoto] = useState(null);
 
 
   function handleSubmit(e) {
@@ -27,7 +27,8 @@ function NewPet({ pet }) {
     formData.append("species", species)
     formData.append("breed", breed)
     formData.append("bio", bio)
-    // formData.append("photo", setPhoto)
+    // formData.append("photo", e.target.querySelector("#photo").value)
+    // debugger
 
     fetch("/api/pets", {
       method: "POST",
@@ -36,14 +37,20 @@ function NewPet({ pet }) {
       .then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        history.push("/");
+        history.push("/profile");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
   }
-console.log("Next, I'm going to return...")
-console.log()
+
+  useEffect(() => {
+    refresh()
+}, []);
+
+ function refresh(){
+      
+ }
   return (
     <Wrapper>
       <WrapperChild>
@@ -95,16 +102,12 @@ console.log()
             />
           </FormField>
           <FormField>
-            {/* It breaks when I go to attach a photo */}
-            {/* it resets the whole page and erases everything there */}
-            {/* if I change line 4 to value instead of ref, it says the owner must not be blank */}
-            {/* when changed to useRef, doesn't instantly break, but does say owner must exist */}
             <Label htmlFor="mediaUrl">Picture of Your Pet: </Label>
             <Input
               type="file"
-              id="photo"
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
+              name="photo"
+              ref={photo}
+              onChange={(e) => photo.current=(e.target.value)}
             />
           </FormField>
           <FormField>

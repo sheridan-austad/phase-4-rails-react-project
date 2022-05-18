@@ -9,16 +9,6 @@ function PetList() {
   const [pets, setPets] = useState([]);
   const {user} = useContext(UserContext);
  
-  // useEffect(() => {
-    // if the location is pets fire the call
-    // condition ? exprIfTrue : exprIfFalse
-  //   fetch("/api/pets")
-  //     .then((r) => r.json())
-  //     .then(setPets);
-  // }, []);
-// before pets.map 
-  // const user.pets = pets.filter(pet => pet.owner.username === user.username)
-  
   return (
     <div className="wrapper">
       {user.pets.length > 0 ? (
@@ -36,14 +26,5 @@ function PetList() {
     </div>
   );
 }
-
-// const Wrapper = styled.section`
-//   max-width: 800px;
-//   margin: 40px auto;
-// `;
-
-// const Recipe = styled.article`
-//   margin-bottom: 24px;
-// `;
 
 export default PetList;

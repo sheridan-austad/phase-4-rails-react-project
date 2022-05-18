@@ -1,4 +1,5 @@
 class PetSerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
   # shows what is allowed under pets
   attributes :id, :name, :age, :species, :breed, :bio, :photo, :owner
   # has many walkers, 
@@ -7,6 +8,6 @@ class PetSerializer < ActiveModel::Serializer
 
   def photo
     return nil unless object.photo.attached?
-    object.photo.blob.attributes.slice('filename', 'byte_size').merge(url: object.photo).tap { |attrs| attrs['name'] = attrs.delete('filename') }
+    object.photo.blob.attributes.slice('filename', 'byte_size').merge(url: rails_blob_path(object.photo, only_path: true)).tap { |attrs| attrs['name'] = attrs.delete('filename') }
   end
 end

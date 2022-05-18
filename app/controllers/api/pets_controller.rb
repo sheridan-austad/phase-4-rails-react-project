@@ -1,5 +1,5 @@
 class Api::PetsController < ApplicationController
-    skip_before_action :authorize, only: [:create, :index]
+    skip_before_action :authorize, only: [:index]
 
     def index
         pets = Pet.preload(:walkers)
@@ -7,7 +7,8 @@ class Api::PetsController < ApplicationController
     end
 
     def create
-        pets = Pet.create!(pet_params)
+      pet = @current_user.pets.create!(pet_params)
+      # binding.pry
         render json: pet, status: :created
     end
     # def index
