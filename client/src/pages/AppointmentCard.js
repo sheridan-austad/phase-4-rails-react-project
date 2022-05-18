@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 
 
-function AppointmentCard({pet_id, owner,  walker, walk_time, walk_date, comments}) {
+function AppointmentCard({owner, walker, appointment}) {
   
   return (
  <div>
@@ -15,7 +15,7 @@ function AppointmentCard({pet_id, owner,  walker, walk_time, walk_date, comments
                 
                 <CardContent align="center">
                     <Typography variant="h5" component="h3" color="secondary" gutterBottom>
-                        Pet: {pet_id}
+                        Pet: {appointment.pet_id}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
                         Owner: {owner?.name}
@@ -24,13 +24,13 @@ function AppointmentCard({pet_id, owner,  walker, walk_time, walk_date, comments
                         Walker: {walker?.name}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
-                        Walk Time: {walk_time}
+                        Walk Time: {appointment.walk_time}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
-                       When: {walk_date}
+                       When: {appointment.walk_date}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
-                        Comments About the Walk: {comments}
+                        Comments About the Walk: {appointment.comments}
                     </Typography>
 
                 </CardContent> 

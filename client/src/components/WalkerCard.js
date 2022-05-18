@@ -4,11 +4,15 @@ import {UserContext} from './User';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import WalkerList from './WalkerList';
 
-function WalkerProfile({name, bio}) {
+function WalkerCard({name, bio}) {
   const {user} = useContext(UserContext);
-  const avatarURL = user.avatar === null ? "" : user.avatar.url;
+//   const avatarURL = user.avatar === null ? "" : user.avatar.url;
 
+
+  fetch("/api/walkers").then((r) => r.json()).then(walkers => console.log(walkers))
+//   map through walkers
 //   if (!user) return <h2> Please Login to View Profile</h2>;
   console.log(user)
   return (
@@ -17,8 +21,8 @@ function WalkerProfile({name, bio}) {
         <Card className="card" elevation={0}>
                 
                 <CardContent align="center">
-
-                <img src={avatarURL} alt="avatar"/>
+                    <WalkerList />
+                {/* <img src={avatarURL} alt="avatar"/> */}
 
                     <Typography variant="h5" component="h3" color="secondary">
                         Name: {name}
@@ -28,11 +32,11 @@ function WalkerProfile({name, bio}) {
                     </Typography>
                 </CardContent> 
 
-                    <Button>Make an Appointment With This Walker</Button>
+                    <Button>Create Appointment With This Walker</Button>
 
             </Card>
     </div>
   );
 }
 
-export default WalkerProfile
+export default WalkerCard

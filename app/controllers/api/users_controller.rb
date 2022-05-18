@@ -22,15 +22,15 @@ class Api::UsersController < ApplicationController
   end
   
   # getting the walkers under the user model
-  def index
-    users = User.walkers
-    render json: users,  status: 200
+  def walkers
+    walkers = User.walkers
+    render json: walkers,  status: 200
   end
 
   # getting the owners under the user model
   def index
-    users = User.owners
-    render json: users,  status: 200
+    owners = User.owners
+    render json: owners,  status: 200
   end
 
   private

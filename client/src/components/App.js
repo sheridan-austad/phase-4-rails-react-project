@@ -6,7 +6,7 @@ import PetCard from "../pages/PetCard";
 import PetList from "../pages/PetList";
 import NewPet from "../pages/NewPet";
 import Profile from "./Profile";
-import WalkerProfile from "./WalkerProfile";
+import WalkerCard from "./WalkerCard.js";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import './App.css';
@@ -57,7 +57,7 @@ function App() {
             <Profile/>
           </Route>
           <Route path="/walkers">
-            <WalkerProfile/>
+            <WalkerCard/>
           </Route>
           <Route path="/signup">
             <SignUpForm />

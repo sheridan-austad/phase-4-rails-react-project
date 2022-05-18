@@ -10,7 +10,7 @@ function SignUpForm({ onLogin }) {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [bio, setBio] = useState("");
   const [role, setRole] = useState("");
-  const [user, setUser] = useState(true);
+  // const [user, setUser] = useState(true);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const avatar = useRef(null);

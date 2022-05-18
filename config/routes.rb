@@ -2,11 +2,13 @@ Rails.application.routes.draw do
   namespace :api do
     post "/signup", to: "users#create"
     get "/me", to: "users#show"
+    get "/walkers", to: 'users#walkers'
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
     resources :pets
     resources :appointments
     resources :users, only: [:index]
+    # resources :walkers, only: [:index]
     # GET walkers
     # GET appointments
     # make a new appt
