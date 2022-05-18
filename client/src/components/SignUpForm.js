@@ -21,9 +21,6 @@ function SignUpForm({ onLogin }) {
     setErrors([]);
     setIsLoading(true);
     const formData = new FormData(e.target)
-    debugger
-    console.log("FORM DATA")
-    console.log(formData);
     formData.append("name", name)
     formData.append("email", email)
     formData.append("username", username)
@@ -31,8 +28,6 @@ function SignUpForm({ onLogin }) {
     formData.append("password_confirmation", passwordConfirmation)
     formData.append("bio", bio)
     formData.append("role", role)
-    console.log("FORM DATA 2")
-    console.log(formData);
     // HOW DO I DIPLAY THE IMAGE ON THE PROFILE
     
     fetch("/api/signup", {
@@ -49,7 +44,7 @@ function SignUpForm({ onLogin }) {
       }
     });
   }
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <FormField>
@@ -129,7 +124,7 @@ function SignUpForm({ onLogin }) {
               value="owner"
               checked={role === "owner"}
               onChange={(e) => setRole(e.target.value)}
-            />
+            />&nbsp;
             I Own a Pet
           </label>
         </div>
@@ -140,7 +135,7 @@ function SignUpForm({ onLogin }) {
               value="walker"
               checked={role === "walker"}
               onChange={(e) => setRole(e.target.value)}
-            />
+            />&nbsp;
             I Want to be a Walker
           </label>
         </div>

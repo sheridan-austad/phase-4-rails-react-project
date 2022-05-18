@@ -19,7 +19,7 @@ function PetList() {
         <>
           <h2>No Animals Are Listed Under Your Name</h2>
           <Button as={Link} to="/pets/new">
-            Add an animal
+            Add Your Pet
           </Button>
         </>
       )}

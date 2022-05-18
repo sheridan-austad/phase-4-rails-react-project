@@ -1,7 +1,8 @@
-import React, { useState,  useRef, useEffect } from "react";
+import React, { useState,  useRef, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, } from "../styles";
+import { UserContext } from "../components/User";
 
 function NewPet() {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ function NewPet() {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const photo = useRef(null);
+  const {setUser} = useContext(UserContext);
   // const [photo, setPhoto] = useState(null);
 
 
@@ -37,6 +39,9 @@ function NewPet() {
       .then((r) => {
       setIsLoading(false);
       if (r.ok) {
+        r.json().then((pet) => setUser(currentUser => (
+          {...currentUser, pets: [...currentUser.pets, pet]}
+          )));
         history.push("/profile");
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -49,7 +54,7 @@ function NewPet() {
 }, []);
 
  function refresh(){
-      
+
  }
   return (
     <Wrapper>

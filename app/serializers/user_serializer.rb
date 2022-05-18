@@ -15,4 +15,7 @@ class UserSerializer < ActiveModel::Serializer
     self.object.owner? ? self.object.created_appointments : self.object.owned_appointments
   end
   # if you are a walker only get get pets to walk, otherwise get all your pets
+  def walker
+    return nil unless self.object.walker
+  end
 end
