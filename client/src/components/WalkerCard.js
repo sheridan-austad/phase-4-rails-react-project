@@ -4,25 +4,19 @@ import {UserContext} from './User';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import WalkerList from './WalkerList';
 
-function WalkerCard({name, bio}) {
+function WalkerCard({name, bio, avatar}) {
   const {user} = useContext(UserContext);
-//   const avatarURL = user.avatar === null ? "" : user.avatar.url;
-
-
-  fetch("/api/walkers").then((r) => r.json()).then(walkers => console.log(walkers))
-//   map through walkers
-//   if (!user) return <h2> Please Login to View Profile</h2>;
   console.log(user)
+
+  const url = avatar === null ? "" : avatar.url;
+
   return (
     <div>
-        <h1>Please Choose a Walker</h1>
         <Card className="card" elevation={0}>
                 
                 <CardContent align="center">
-                    <WalkerList />
-                {/* <img src={avatarURL} alt="avatar"/> */}
+                <img src={url} alt="avatar"/>
 
                     <Typography variant="h5" component="h3" color="secondary">
                         Name: {name}

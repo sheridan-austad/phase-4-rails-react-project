@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../styles";
 import PetCard from "./PetCard";
@@ -6,7 +6,7 @@ import {UserContext} from '../components/User'
 
 
 function PetList() {
-  const [pets, setPets] = useState([]);
+  // const [pets, setPets] = useState([]);
   const {user} = useContext(UserContext);
  
   return (

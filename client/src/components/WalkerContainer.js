@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
+import WalkerList from './WalkerList'
 
 const WalkerContainer = () => {
-    fetch("/api/walkers").then((r) => r.json()).then(walkers => console.log(walkers))
-  return (
-    <div>I want to grab the walkers and put them here</div>
+  const [walkers, setWalkers] = useState([]);
+
+  console.log("WALKER CONTAINER")
+
+   useEffect(() => {
+    fetch("/api/walkers").then((r) => r.json()).then(walkers => setWalkers(walkers))
+    console.log("Walkers")
+    console.log(walkers)
+    
+   }, []);
+  
+  
+    return (
+    <div>
+      <WalkerList walkers={walkers}/>
+    </div>
   )
 }
 

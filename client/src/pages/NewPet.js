@@ -49,13 +49,6 @@ function NewPet() {
     });
   }
 
-  useEffect(() => {
-    refresh()
-}, []);
-
- function refresh(){
-
- }
   return (
     <Wrapper>
       <WrapperChild>

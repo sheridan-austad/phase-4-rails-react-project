@@ -1,11 +1,16 @@
-import React from 'react'
-import WalkerContainer from './WalkerContainer';
+// import { useContext } from "react";
+import WalkerCard from './WalkerCard';
+// import { UserContext } from "./User";
 
-const WalkerList = () => {
+const WalkerList = ({walkers}) => {
+   console.log(walkers)
   return (
     <div>
-        {/* map through walkers list - map through what was fetched */}
-        <WalkerContainer/>
+      <h1>Please Choose a Walker</h1>
+        <div className='wrapper'>
+        {walkers.map((walker) => (<WalkerCard key={walker.id}{...walker}/>))
+          }
+        </div>
     </div>
   )
 }

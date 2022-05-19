@@ -6,12 +6,13 @@ import PetCard from "../pages/PetCard";
 import PetList from "../pages/PetList";
 import NewPet from "../pages/NewPet";
 import Profile from "./Profile";
-import WalkerCard from "./WalkerCard.js";
+// import WalkerCard from "./WalkerCard.js";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import './App.css';
 import {UserContext } from "./User";
 import AppointmentList from "../pages/AppointmentList";
+import WalkerContainer from "./WalkerContainer";
 
 function App() {
   const {user, setUser} = useContext(UserContext);
@@ -57,7 +58,7 @@ function App() {
             <Profile/>
           </Route>
           <Route path="/walkers">
-            <WalkerCard/>
+            <WalkerContainer/>
           </Route>
           <Route path="/signup">
             <SignUpForm />
