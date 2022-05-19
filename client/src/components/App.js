@@ -13,6 +13,7 @@ import './App.css';
 import {UserContext } from "./User";
 import AppointmentList from "../pages/AppointmentList";
 import WalkerContainer from "./WalkerContainer";
+import NewAppointment from "./NewAppointment";
 
 function App() {
   const {user, setUser} = useContext(UserContext);
@@ -41,6 +42,9 @@ function App() {
           </Route>
          <Route path='/api/appointments'>
             <AppointmentList/>
+          </Route> 
+         <Route path='/appointments/new'>
+           <NewAppointment/>
           </Route> 
           <Route path='/pets/:id'>
             <PetCard/>

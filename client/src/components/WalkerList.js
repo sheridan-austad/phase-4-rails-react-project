@@ -1,12 +1,12 @@
-// import { useContext } from "react";
 import WalkerCard from './WalkerCard';
-// import { UserContext } from "./User";
 
 const WalkerList = ({walkers}) => {
    console.log(walkers)
-  return (
-    <div>
+   return (
+     <div>
+      {/* returning the words */}
       <h1>Please Choose a Walker</h1>
+      {/* mapping through the walkers to display the walker card */}
         <div className='wrapper'>
         {walkers.map((walker) => (<WalkerCard key={walker.id}{...walker}/>))
           }
@@ -16,4 +16,3 @@ const WalkerList = ({walkers}) => {
 }
 
 export default WalkerList
-// walker profile/card - displays everything
