@@ -89,3 +89,4 @@ ActiveRecord::Schema.define(version: 2022_05_09_234511) do
   add_foreign_key "appointments", "users", column: "walker_id"
   add_foreign_key "pets", "users", column: "owner_id"
 end
+

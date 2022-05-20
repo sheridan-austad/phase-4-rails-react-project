@@ -5,7 +5,10 @@ class Api::AppointmentsController < ApplicationController
     end
 
     def create
-        appointments = Appointment.find_by(username: params[:username])
-        render json: appointments
+        # binding.pry
+        walker = User.find_by!(name: params[:walker_name])
+        pet = @current_user.pets.find_by!(name: params[:pet_name])
+        appointment = @current_user.created_appointments.create!(walk_time: params[:walk_time], walk_date: params[:walk_date], comments: params[:comments], walker: walker, pet: pet)
+        render json: appointment
       end
 end

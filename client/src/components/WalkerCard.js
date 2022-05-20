@@ -12,7 +12,7 @@ function WalkerCard({ name, bio, avatar, id }) {
   console.log(user)
 // setting the url to the avatar
 // ternary for if there is no avatar don't show one, if there is show the url
-  const url = avatar === null ? "" : avatar.url;
+const url = !!avatar ? avatar.url : window.location.origin + '/default-avatar.png';
 
   return (
     <div>
