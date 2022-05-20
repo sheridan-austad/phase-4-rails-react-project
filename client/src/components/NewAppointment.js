@@ -19,6 +19,8 @@ const NewAppointment = () => {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const {setUser} = useContext(UserContext);
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -38,7 +40,9 @@ const NewAppointment = () => {
         .then((r) => {
             setIsLoading(false);
             if (r.ok) {
-              r.json().then((user) => history.push('/api/appointments'));
+              r.json().then((item) => {console.log('items'); console.log(item)});
+              history.push('/api/appointments');
+              window.location.reload();
             } 
             else {
               r.json().then((err) => setErrors(err.errors));

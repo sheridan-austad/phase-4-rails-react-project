@@ -1,11 +1,15 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { Button } from 'bootstrap';
 
 
 
 function AppointmentCard({owner, walker, appointment}) {
   
+    function deleteAppt() {
+        fetch('/api/appointments')
+    }
   return (
  <div>
   
@@ -32,7 +36,7 @@ function AppointmentCard({owner, walker, appointment}) {
                     <Typography variant="h5" component="h3" color="secondary">
                         Comments About the Walk: {appointment.comments}
                     </Typography>
-
+                    {/* <Button>Delete</Button> */}
                 </CardContent> 
 
             </Card>

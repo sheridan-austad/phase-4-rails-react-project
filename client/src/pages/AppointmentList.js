@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 const AppointmentList = () => {
     const {user} = useContext(UserContext);
 
+    console.log("USER APPOINTMENTS");
+    console.log(user.appointments)
+    console.log("FINISHED")
+
   return (
     <div>
         <h3 className="title"> Here Are Your Appointments!</h3>
@@ -15,7 +19,10 @@ const AppointmentList = () => {
          New Appointment
         </Button>
       </div>
-        {user.appointments.map((appointment) => <AppointmentCard key={appointment.id} {...appointment}/>)}
+        {user.appointments.map((appointment) => {
+          //console.log(appointment);
+        return (<AppointmentCard key={appointment.id} {...appointment}/>)
+      })}
     </div>
   )
 }
