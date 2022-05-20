@@ -1,5 +1,7 @@
 class Api::AppointmentsController < ApplicationController
-    def index
+  #  skip_before_action :require_login, only: [:delete, :show]
+
+  def index
         appointments = @current_user.walker? ? @current_user.owned_appointments : @current_user.created_appointments
         render json: appointments
     end
@@ -13,12 +15,12 @@ class Api::AppointmentsController < ApplicationController
       end
     
       def delete
-        appointment = Appointment.find_by(id: params[:id])
-        appointment.delete
+        appointments = Appointment.find_by(id: params[:user_id])
+        appointments.delete
       end
 
       def show
-        appointment = Appointment.find_by!(id: params[:id])
-        render json: appointment
+        appointments = Appointment.find_by(id: params[:user_id])
+        render json: appointments
       end
 end

@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     post "/signup", to: "users#create"
     get "/me", to: "users#show"
     get "/walkers", to: 'users#walkers'
-    get "/appointments/:id", to: 'appointments#show'
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    get "/appointments/:id", to: 'appointments#show'
     delete "/appointments/:id", to: 'appointments#delete'
     resources :pets
     resources :appointments
