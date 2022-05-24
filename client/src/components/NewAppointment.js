@@ -56,7 +56,7 @@ const NewAppointment = () => {
   }
 
   console.log("This is the pet");
-  console.log();
+  console.log(user.pets[0].name);
 
     if (!locationState?.walkerName) return <Redirect to="/walkers" />
 
@@ -74,9 +74,7 @@ const NewAppointment = () => {
               {user.pets.map(pet => (<option>{pet.name}</option>))}
           </select>    
          </FormField> 
-          {/* pet and walker have to objects */}
-          {/* currentUser.createdappts.create in backend
-          currentUser.pets - pet and walker string converted to an object, and then if its there display */}
+          {/* currentUser.pets - pet and walker string converted to an object, and then if its there display */}
          <FormField>
             <Label htmlFor="date">Date: </Label>
             <Input

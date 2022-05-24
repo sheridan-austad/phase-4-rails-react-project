@@ -8,13 +8,18 @@ class Api::PetsController < ApplicationController
 
     def create
       pet = @current_user.pets.create!(pet_params)
-      # binding.pry
         render json: pet, status: :created
     end
-    # def index
-    #     pets = Pet.preload(:owners)
-    #     render json: pets
-    # end
+
+    def show
+        pets = Pet.find_by(id: params[:user_id])
+        render json: pets
+    end
+
+    def delete
+      pets = Pet.find_by(id: params[:user_id])
+      pets.delete
+    end
 
     private
 
