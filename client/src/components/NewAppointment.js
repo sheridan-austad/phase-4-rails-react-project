@@ -20,35 +20,43 @@ const NewAppointment = () => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const {setUser} = useContext(UserContext);
+  const [option,setOption] = useState()
+
+  function handleChange(e){
+      setOption(e.target.value)
+  }
 
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        setErrors([]);
-        setIsLoading(true);
-        fetch("/api/appointments", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                walk_time: time,
-                walk_date: date,
-                comments,
-                walker_name: locationState.walkerName,
-                pet_name: pet
-            }),
-        })
-        .then((r) => {
-            setIsLoading(false);
-            if (r.ok) {
-              r.json().then((item) => {console.log('items'); console.log(item)});
-              history.push('/api/appointments');
-              window.location.reload();
-            } 
-            else {
-              r.json().then((err) => setErrors(err.errors));
-            }
-          });
-    }
+  function handleSubmit(e) {
+      e.preventDefault();
+      setErrors([]);
+      setIsLoading(true);
+      fetch("/api/appointments", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+              walk_time: time,
+              walk_date: date,
+              comments,
+              walker_name: locationState.walkerName,
+              pet_name: pet
+          }),
+      })
+      .then((r) => {
+          setIsLoading(false);
+          if (r.ok) {
+            r.json().then((item) => {console.log('items'); console.log(item)});
+            history.push('/api/appointments');
+            window.location.reload();
+          } 
+          else {
+            r.json().then((err) => setErrors(err.errors));
+          }
+        });
+  }
+
+  console.log("This is the pet");
+  console.log();
 
     if (!locationState?.walkerName) return <Redirect to="/walkers" />
 
@@ -59,16 +67,13 @@ const NewAppointment = () => {
         <form onSubmit={handleSubmit}>
             {/* Dropdown for pet */}
          <FormField>
-            <Label htmlFor="date">Pet: </Label>
-            <Input
-              type="dropdown show"
-              id="actions"
-              name="pet_name"
-              value={pet}
-              onChange={(e) => setPet(e.target.value)}
-            />
-          </FormField> 
-          {/* post fetch doesn't send information along */}
+         <Label htmlFor="pet">Pet: </Label>
+         <select name='option' onChange={handleChange}>
+           {/* mapping through all of the pets under user */}
+           {/* taking the pet object and for every pet object doing the thing after the arrow function */}
+              {user.pets.map(pet => (<option>{pet.name}</option>))}
+          </select>    
+         </FormField> 
           {/* pet and walker have to objects */}
           {/* currentUser.createdappts.create in backend
           currentUser.pets - pet and walker string converted to an object, and then if its there display */}
