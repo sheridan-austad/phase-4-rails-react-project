@@ -1,5 +1,6 @@
 class Api::AppointmentsController < ApplicationController
-  #  skip_before_action :require_login, only: [:delete, :show]
+  before_action :require_login
+  skip_before_action :require_login, only: [:show]
 
   def index
         appointments = @current_user.walker? ? @current_user.owned_appointments : @current_user.created_appointments
@@ -22,5 +23,10 @@ class Api::AppointmentsController < ApplicationController
       def show
         appointments = Appointment.find_by(id: params[:user_id])
         render json: appointments
+      end
+
+      private
+      def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
       end
 end
