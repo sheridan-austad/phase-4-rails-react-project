@@ -1,12 +1,12 @@
 import React from 'react'
 
-function OwnerCard({user}) {
+function OwnerCard({ user }) {
   return (
-      <div>
-        
-        <div className="box"> Welcome {user.username}</div>
-        <OwnerCard key={user.username} {...user}/>
-    
+    <div>
+
+      <div className="box"> Welcome {user.username}</div>
+      <OwnerCard key={user.username} {...user} />
+
     </div>
   )
 }

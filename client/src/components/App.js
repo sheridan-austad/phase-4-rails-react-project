@@ -10,13 +10,13 @@ import Profile from "./Profile";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import './App.css';
-import {UserContext } from "./User";
+import { UserContext } from "./User";
 import AppointmentList from "../pages/AppointmentList";
 import WalkerContainer from "./WalkerContainer";
 import NewAppointment from "./NewAppointment";
 
 function App() {
-  const {user, setUser} = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   // const history = useHistory();
 
   useEffect(() => {
@@ -27,42 +27,40 @@ function App() {
     });
   }, []);
 
-  if (!user) 
-  {
-    return <Login/>;
+  if (!user) {
+    return <Login />;
   }
-  else
-  {
+  else {
     return (
       <>
         <NavBar user={user} setUser={setUser} />
         <Switch>
           <Route path='/pets/new'>
-            <NewPet/>
+            <NewPet />
           </Route>
-         <Route path='/api/appointments'>
-            <AppointmentList/>
-          </Route> 
-         <Route path='/appointments/new'>
-           <NewAppointment/>
-          </Route> 
+          <Route path='/api/appointments'>
+            <AppointmentList />
+          </Route>
+          <Route path='/appointments/new'>
+            <NewAppointment />
+          </Route>
           <Route path='/pets/:id'>
-            <PetCard/>
+            <PetCard />
           </Route>
           <Route path='/pets'>
-            <PetList/> 
+            <PetList />
           </Route>
           <Route path='/pets/new'>
-            <NewPet/>
+            <NewPet />
           </Route>
           <Route path="/signin">
             <Login />
           </Route>
           <Route path="/profile">
-            <Profile/>
+            <Profile />
           </Route>
           <Route path="/walkers">
-            <WalkerContainer/>
+            <WalkerContainer />
           </Route>
           <Route path="/signup">
             <SignUpForm />

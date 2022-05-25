@@ -1,4 +1,4 @@
-import { UserProvider} from "./components/User";
+import { UserProvider } from "./components/User";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
   private
 
   def require_login
-    unless logged_in?
+    unless @current_user
       render json: {errors: ["You must be logged in to access this section"]}
   end
 end

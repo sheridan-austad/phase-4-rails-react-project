@@ -2,35 +2,35 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-function PetCard({photo, name, age, species, breed, bio}) {
-    
+function PetCard({ photo, name, age, species, breed, bio }) {
+
     const url = photo === null ? "" : photo.url;
 
     return (
-        
-            <Card className="card" elevation={0}>
-                
-                <CardContent align="center">
-                    <img src={url} alt=""/>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Name: {name}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Age: {age}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Species: {species}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Breed: {breed}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Bio: {bio}
-                    </Typography>
 
-                </CardContent> 
+        <Card className="card" elevation={0}>
 
-            </Card>
+            <CardContent align="center">
+                <img src={url} alt="" />
+                <Typography variant="h5" component="h3" color="secondary">
+                    Name: {name}
+                </Typography>
+                <Typography variant="h5" component="h3" color="secondary">
+                    Age: {age}
+                </Typography>
+                <Typography variant="h5" component="h3" color="secondary">
+                    Species: {species}
+                </Typography>
+                <Typography variant="h5" component="h3" color="secondary">
+                    Breed: {breed}
+                </Typography>
+                <Typography variant="h5" component="h3" color="secondary">
+                    Bio: {bio}
+                </Typography>
+
+            </CardContent>
+
+        </Card>
     )
 }
 

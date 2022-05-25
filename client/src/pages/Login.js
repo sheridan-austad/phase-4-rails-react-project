@@ -1,4 +1,4 @@
-import { useState,  useContext } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
@@ -7,7 +7,7 @@ import { UserContext } from "../components/User";
 
 function Login() {
   const [showLogin, setShowLogin] = useState(true);
-  const {onLogin} = useContext(UserContext);
+  const { onLogin } = useContext(UserContext);
   return (
     <Wrapper>
       <Logo>Dog Walker</Logo>
@@ -22,7 +22,7 @@ function Login() {
             </Button>
           </p>
         </>
-      ): (
+      ) : (
         <>
           <SignUpForm onLogin={onLogin} />
           <Divider />

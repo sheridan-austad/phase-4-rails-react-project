@@ -1,4 +1,4 @@
-import React, { useState,  useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, } from "../styles";
@@ -14,7 +14,7 @@ function NewPet() {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const photo = useRef(null);
-  const {setUser} = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   // const [photo, setPhoto] = useState(null);
 
 
@@ -35,18 +35,18 @@ function NewPet() {
     fetch("/api/pets", {
       method: "POST",
       body: formData
-      })
+    })
       .then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((pet) => setUser(currentUser => (
-          {...currentUser, pets: [...currentUser.pets, pet]}
+        setIsLoading(false);
+        if (r.ok) {
+          r.json().then((pet) => setUser(currentUser => (
+            { ...currentUser, pets: [...currentUser.pets, pet] }
           )));
-        history.push("/profile");
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+          history.push("/profile");
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
   }
 
   return (
@@ -105,7 +105,7 @@ function NewPet() {
               type="file"
               name="photo"
               ref={photo}
-              onChange={(e) => photo.current=(e.target.value)}
+              onChange={(e) => photo.current = (e.target.value)}
             />
           </FormField>
           <FormField>

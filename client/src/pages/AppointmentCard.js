@@ -5,18 +5,18 @@ import { Button } from 'bootstrap';
 
 
 
-function AppointmentCard({owner, walker, appointment}) {
-  
+function AppointmentCard({ owner, walker, appointment }) {
+
     function deleteAppt() {
         fetch('/api/appointments')
     }
-  return (
- <div>
-  
-    
-  
-    <Card className="card" elevation={0}>
-                
+    return (
+        <div>
+
+
+
+            <Card className="card" elevation={0}>
+
                 <CardContent align="center">
                     <Typography variant="h5" component="h3" color="secondary" gutterBottom>
                         Pet: {appointment.pet_id}
@@ -31,17 +31,17 @@ function AppointmentCard({owner, walker, appointment}) {
                         Walk Time: {appointment.walk_time}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
-                       When: {appointment.walk_date}
+                        When: {appointment.walk_date}
                     </Typography>
                     <Typography variant="h5" component="h3" color="secondary">
                         Comments About the Walk: {appointment.comments}
                     </Typography>
                     {/* <Button>Delete</Button> */}
-                </CardContent> 
+                </CardContent>
 
             </Card>
-    </div>
-  )
+        </div>
+    )
 }
 
 

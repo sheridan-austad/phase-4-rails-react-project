@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     get "/walkers", to: 'users#walkers'
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
-    get "/appointments/:id", to: 'appointments#show'
-    delete "/appointments/:id", to: 'appointments#delete'
+    # get "/appointments/:id", to: 'appointments#show'
+    # delete "/appointments/:id", to: 'appointments#delete'
     resources :pets
     resources :appointments
     resources :users, only: [:index]

@@ -1,53 +1,58 @@
  div.card {
-    border-width: 1pt;
-    border-color: black;
-    width: 500px;
-    padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    box-shadow: 10px 10px 54px -6px;
-}
-  .wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 215px;
-  }
+   border-width: 1pt;
+   border-color: black;
+   width: 500px;
+   padding: 10px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 10px;
+   box-shadow: 10px 10px 54px -6px;
+ }
 
-  .center {
-    box-shadow: 10px 10px 54px -6px;
-    border-width: 1pt;
-    border-color: black;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 200px;
-    width: 50%;
-  }
+ .wrapper {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   padding: 215px;
+ }
 
-  h1 {
-    text-align: center;
-    margin-top: 50px;
-  }
+ .center {
+   box-shadow: 10px 10px 54px -6px;
+   border-width: 1pt;
+   border-color: black;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 200px;
+   width: 50%;
+ }
 
-  h3, p {
-    text-align: center;
-    margin: top 2px;
-  }
-  h2 {
-    text-align: center;
-    margin-top: 50px;
-  }
-  h3.title {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
+ h1 {
+   text-align: center;
+   margin-top: 50px;
+ }
 
-  box {
-    text-align: center;
-  }
-  img {
-    width: 100%;
-  }
+ h3,
+ p {
+   text-align: center;
+   margin: top 2px;
+ }
+
+ h2 {
+   text-align: center;
+   margin-top: 50px;
+ }
+
+ h3.title {
+   text-align: center;
+   margin-top: 50px;
+   margin-bottom: 50px;
+ }
+
+ box {
+   text-align: center;
+ }
+
+ img {
+   width: 100%;
+ }

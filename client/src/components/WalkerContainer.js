@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import WalkerList from './WalkerList'
 
 const WalkerContainer = () => {
@@ -6,17 +6,17 @@ const WalkerContainer = () => {
 
   console.log("WALKER CONTAINER")
 
-   useEffect(() => {
+  useEffect(() => {
     fetch("/api/walkers").then((r) => r.json()).then(walkers => setWalkers(walkers))
     console.log("Walkers")
     console.log(walkers)
-    
-   }, []);
-  
-  
-    return (
+
+  }, []);
+
+
+  return (
     <div>
-      <WalkerList walkers={walkers}/>
+      <WalkerList walkers={walkers} />
     </div>
   )
 }

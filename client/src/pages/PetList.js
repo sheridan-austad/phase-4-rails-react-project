@@ -2,18 +2,18 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../styles";
 import PetCard from "./PetCard";
-import {UserContext} from '../components/User'
+import { UserContext } from '../components/User'
 
 
 function PetList() {
   // const [pets, setPets] = useState([]);
-  const {user} = useContext(UserContext);
- 
+  const { user } = useContext(UserContext);
+
   return (
     <div className="wrapper">
       {user.pets.length > 0 ? (
         user.pets.map((pet) => (
-          <PetCard key={pet.id} {...pet}/>
+          <PetCard key={pet.id} {...pet} />
         ))
       ) : (
         <>

@@ -14,8 +14,8 @@ function SignUpForm({ onLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const avatar = useRef(null);
-  
-  
+
+
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
@@ -29,22 +29,22 @@ function SignUpForm({ onLogin }) {
     formData.append("bio", bio)
     formData.append("role", role)
     // HOW DO I DIPLAY THE IMAGE ON THE PROFILE
-    
+
     fetch("/api/signup", {
       method: "POST",
       body: formData
     })
-    .then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
-      } 
-      else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+      .then((r) => {
+        setIsLoading(false);
+        if (r.ok) {
+          r.json().then((user) => onLogin(user));
+        }
+        else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
   }
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <FormField>
@@ -77,7 +77,7 @@ function SignUpForm({ onLogin }) {
           onChange={(e) => setUsername(e.target.value)}
         />
       </FormField>
-      
+
       <FormField>
         <Label htmlFor="password">Password</Label>
         <Input
@@ -104,7 +104,7 @@ function SignUpForm({ onLogin }) {
           type="file"
           name="avatar"
           ref={avatar}
-          onChange={(e) => avatar.current=(e.target.value)}
+          onChange={(e) => avatar.current = (e.target.value)}
         />
       </FormField>
       <FormField>
@@ -116,7 +116,7 @@ function SignUpForm({ onLogin }) {
           onChange={(e) => setBio(e.target.value)}
         />
       </FormField>
-        <Box>
+      <Box>
         <div className="radio">
           <label>
             <input
@@ -139,7 +139,7 @@ function SignUpForm({ onLogin }) {
             I Want to be a Walker
           </label>
         </div>
-        </Box>
+      </Box>
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
