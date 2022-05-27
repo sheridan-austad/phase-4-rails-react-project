@@ -6,7 +6,7 @@ import { useLocation, Redirect, useHistory } from 'react-router-dom'
 
 
 const NewAppointment = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const location = useLocation()
   const locationState = location.state
   const [time, setTime] = useState("");
@@ -17,7 +17,6 @@ const NewAppointment = () => {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  const { setUser } = useContext(UserContext);
   const [option, setOption] = useState()
 
   function handleChange(e) {
@@ -44,9 +43,12 @@ const NewAppointment = () => {
       .then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((item) => { console.log('items'); console.log(item) });
-          history.push('/api/appointments');
-          // window.location.reload();
+          r.json().then((item) => {
+            setUser(currentUser => {
+              return {...currentUser, appointments: [...currentUser.appointments, item] }
+            })
+            history.push('/api/appointments');
+          });
         }
         else {
           r.json().then((err) => setErrors(err.errors));
@@ -54,8 +56,6 @@ const NewAppointment = () => {
       });
   }
 
-  // console.log("This is the pet");
-  console.log(user.pets[0].name);
 
   if (!locationState?.walkerName) return <Redirect to="/walkers" />
 
@@ -70,8 +70,7 @@ const NewAppointment = () => {
             <select name='option' onChange={handleChange}>
               {/* mapping through all of the pets under user */}
               {/* taking the pet object and for every pet object doing the thing after the arrow function */}
-              {/* error when line 74 kicks in... */}
-              {/* appt breaks when there is more than one pet with the same name?? */}
+              <option value=""> Select a Pet</option>
               {user.pets.map(pet => (<option value={pet.id}>{pet.name}</option>))}
             </select>
           </FormField>

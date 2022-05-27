@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
   
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  # I believe line 8 is kicking in before I get to the appointments
   rescue_from ActiveRecord::RecordNotFound, with: :not_authorized
   # line 7 sends a not_authorized message, without it the code says cannot find by the ID
   

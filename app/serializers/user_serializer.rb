@@ -16,6 +16,6 @@ class UserSerializer < ActiveModel::Serializer
   # showing the attributes for the appointment
   def appointments
     appts = self.object.owner? ? self.object.created_appointments : self.object.owned_appointments
-    appts.map{|appt| {appointment: appt, walker: appt.walker, owner: appt.owner}}
+    appts.map{|appt| {appointment: appt, walker: appt.walker, owner: appt.owner, pet_id: appt.pet_id}}
   end
 end

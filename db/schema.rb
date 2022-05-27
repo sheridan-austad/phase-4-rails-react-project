@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 2022_05_09_234511) do
     t.index ["pet_id"], name: "index_appointments_on_pet_id"
     t.index ["walker_id"], name: "index_appointments_on_walker_id"
   end
+  # appointments has no id... only lines 47-49 - not sure if the application will know what I mean by appt_id or appointment_id
+  # I think what I should be able to do is get if not all then just one of the appointments
+  # Then be able to delete one of the appointments, then for full crud be able to edit one part of the appointments
 
   create_table "pets", force: :cascade do |t|
     t.string "name"

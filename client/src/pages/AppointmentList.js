@@ -17,7 +17,7 @@ const AppointmentList = () => {
       </div>
       {user.appointments.map((appointment) => {
         //console.log(appointment);
-        return (<AppointmentCard key={appointment.id} {...appointment} />)
+        return (<AppointmentCard key={appointment.id} appointment={appointment} />)
       })}
     </div>
   )
