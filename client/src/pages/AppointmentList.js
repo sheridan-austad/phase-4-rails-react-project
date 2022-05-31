@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AppointmentCard from './AppointmentCard';
 import { UserContext } from '../components/User'
 import { Button } from "../styles";
@@ -6,6 +6,22 @@ import { Link } from "react-router-dom";
 
 const AppointmentList = () => {
   const { user } = useContext(UserContext);
+//   const [appt, setAppt] = useState([]);
+
+//   useEffect(() => {
+//     refresh()
+// }, []);
+
+
+// function refresh(){
+//     fetch(`/api/appointments`)
+//          .then(resp => resp.json())
+//          .then(appointment => setAppt(appointment))
+// }
+
+// document.addEventListener('ItemDeleted', refresh)
+
+// console.log("refreshing appintments")
 
   return (
     <div>

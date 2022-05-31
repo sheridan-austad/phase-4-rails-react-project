@@ -6,8 +6,9 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   # I believe line 8 is kicking in before I get to the appointments
   rescue_from ActiveRecord::RecordNotFound, with: :not_authorized
-  # line 7 sends a not_authorized message, without it the code says cannot find by the ID
+  # line 7 sends a not_authorized message, without it the code says cannot find the User by the ID
   
+  # I go into pry if I comment out the before_action
   before_action :authorize
   # helper-method breaks it
   # helper_method :logged_in?
