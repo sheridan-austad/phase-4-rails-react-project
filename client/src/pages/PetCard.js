@@ -2,7 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-function PetCard({ photo, name, age, species, breed, bio }) {
+function PetCard({ photo, name, age, species, breed, bio, walkers }) {
 
     const url = photo === null ? "" : photo.url;
 
@@ -26,6 +26,9 @@ function PetCard({ photo, name, age, species, breed, bio }) {
                 </Typography>
                 <Typography variant="h5" component="h3" color="secondary">
                     Bio: {bio}
+                </Typography>
+                <Typography variant="h5" component="h3" color="secondary">
+                    Walkers: {walkers.length}
                 </Typography>
 
             </CardContent>

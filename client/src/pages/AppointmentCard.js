@@ -1,89 +1,123 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button } from "../styles";
+import { Button, FormField, Input, Label } from "../styles";
 import React, { useState, useContext } from "react";
 import { UserContext } from "../components/User";
 import { useHistory } from 'react-router-dom'
 
 
 function AppointmentCard({ appointment }) {
+
+    appointment = appointment?.appointment || appointment
+    // allowing the delete function to work
     const itemDeletedEvent = new Event("ItemDeleted")
+    // setting state and history for future functions
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [comment, setComment] = useState(appointment.comments);
     const { user, setUser } = useContext(UserContext);
     const history = useHistory();
+    // console.log("this is an appointment")
+    // console.log(appointment)
+    const [apptID] = useState(appointment?.id);
 
+    console.log(`Appointment ID: ${apptID}`)
 
     function deleteAppt() {
         setErrors([]);
         setIsLoading(true);
 
-        console.log("Deleting appointment " + appointment.appointment?.id)
-        fetch(`/api/appointments/${appointment.appointment?.id}`, {
+        // console.log("Deleting appointment " + appointment.appointment?.id)
+        fetch(`/api/appointments/${apptID}`, {
             method: 'delete'
         }).then((r) => {
+            // debugger
+            console.log("DELETE FINISHED")
             if (r.ok) {
                 setUser(currentUser => {
+                    // filter all the appt whos id is not the one we want to remove
+                    const newAppts = currentUser.appointments.filter((appt) => {
+                        const otherId = appt.id || appt.appointment?.id
+                        const different = apptID !== otherId
+                        console.log("Comparing " + apptID + " to " + otherId)
+                        // debugger
+                        return different;
+                    });
 
-                    //Get the index of this card's appointment within the current user's appointment list
-                    const index = currentUser.appointments.indexOf(appointment)
-
-                    //Create a copy of the current user's appointment list
-                    const appointmentsCopy = [...currentUser.appointments]
-
-                    //Remove the item at the specified index
-                    appointmentsCopy.splice(index, 1)
-
-                    //Create a copy of the current user, and set the copy's appointments to the new appointment list with the item deleted
-                    const userCopy = { ...currentUser, appointments: appointmentsCopy }
-
-                    //Return the userCopy object to become the new currentUser
-                    return userCopy
+                    return { ...currentUser, appointments: newAppts }
                 })
-                history.push('/api/appointments');
             }
             else {
+                // only kicks in if there is a problem
                 r.json().then((err) => setErrors(err.errors));
             }
         });
         // creating the deleteButton function
         // getting a reference to the delete button in the document
-        const deleteButton = document.querySelector(`#deleteBtn${appointment.appointment?.id}`)
-        console.log(deleteButton);
+        const deleteButton = document.querySelector(`#deleteBtn${apptID}`)
+        // console.log(deleteButton);
         deleteButton.textContent = "DELETING...";
         // telling the program that an item has been deleted
         document.dispatchEvent(itemDeletedEvent)
 
     }
 
-    console.log("AppointmentID")
-    console.log(appointment.appointment?.id)
+    function handleSubmit(e) {
+        e.preventDefault();
+        fetch(`/api/appointments/${apptID}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ comments: comment })
+        }).then((r) => {
+            if (!r.ok) {
+                r.json().then((err) => setErrors(err.errors));
+            }
+        })
+            .catch(error => console.log(error))
+    }
+
     return (
         <div>
+            {/* creating the card */}
             <Card className="card" elevation={0}>
 
                 <CardContent align="center">
-                    <Typography variant="h5" component="h3" color="secondary" gutterBottom>
-                        Pet: {appointment.appointment?.pet_id || appointment?.pet_id}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Owner: {appointment.owner?.name}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Walker: {appointment?.walker?.name}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Walk Time: {appointment.appointment?.walk_time || appointment?.walk_time}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        When: {appointment.appointment?.walk_date || appointment?.walk_date}
-                    </Typography>
-                    <Typography variant="h5" component="h3" color="secondary">
-                        Comments About the Walk: {appointment.appointment?.comments || appointment?.comments}
-                    </Typography>
-
-                    <Button id={`deleteBtn${appointment.appointment?.id}`} onClick={deleteAppt}>DELETE</Button>
+                    <form onSubmit={handleSubmit}>
+                        <Typography variant="h5" component="h3" color="secondary" gutterBottom>
+                            Pet: {appointment?.pet_id}
+                        </Typography>
+                        <Typography variant="h5" component="h3" color="secondary">
+                            Owner: {appointment.owner?.name}
+                        </Typography>
+                        <Typography variant="h5" component="h3" color="secondary">
+                            Walker: {appointment?.walker?.name}
+                        </Typography>
+                        <Typography variant="h5" component="h3" color="secondary">
+                            Walk Time: {appointment.appointment?.walk_time || appointment?.walk_time}
+                        </Typography>
+                        <Typography variant="h5" component="h3" color="secondary">
+                            When: {appointment?.walk_date}
+                        </Typography>
+                        <FormField>
+                            <Typography variant="h5" component="h3" color="secondary">
+                                Comments About the Walk:
+                                <Input
+                                    type="text"
+                                    id="comments"
+                                    autoComplete="off"
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                />&nbsp;
+                            </Typography> &nbsp; &nbsp;
+                            {/* creating the edit button for comments */}
+                            <Button>Update Comment</Button> &nbsp; &nbsp; &nbsp;
+                        </FormField>
+                        {/* creating the delete button for the appointments */}
+                    </form><br></br>
+                    <Button id={`deleteBtn${apptID}`} onClick={deleteAppt}>Delete Appointment</Button>
                 </CardContent>
 
             </Card>

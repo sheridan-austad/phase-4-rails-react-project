@@ -44,6 +44,8 @@ const NewAppointment = () => {
         setIsLoading(false);
         if (r.ok) {
           r.json().then((item) => {
+            console.log("this is an item")
+            console.log(item)
             setUser(currentUser => {
               return {...currentUser, appointments: [...currentUser.appointments, item] }
             })

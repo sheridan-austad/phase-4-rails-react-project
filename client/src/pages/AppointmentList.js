@@ -6,22 +6,6 @@ import { Link } from "react-router-dom";
 
 const AppointmentList = () => {
   const { user } = useContext(UserContext);
-//   const [appt, setAppt] = useState([]);
-
-//   useEffect(() => {
-//     refresh()
-// }, []);
-
-
-// function refresh(){
-//     fetch(`/api/appointments`)
-//          .then(resp => resp.json())
-//          .then(appointment => setAppt(appointment))
-// }
-
-// document.addEventListener('ItemDeleted', refresh)
-
-// console.log("refreshing appintments")
 
   return (
     <div>
