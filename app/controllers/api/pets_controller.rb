@@ -21,8 +21,6 @@ class Api::PetsController < ApplicationController
       pets.delete
     end
     
-    def order
-      Pet.all.order('name asc')
 
     private
 
