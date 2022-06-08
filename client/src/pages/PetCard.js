@@ -1,6 +1,7 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { Button } from 'bootstrap';
 
 function PetCard({ photo, name, age, species, breed, bio, walkers }) {
 
@@ -30,7 +31,7 @@ function PetCard({ photo, name, age, species, breed, bio, walkers }) {
                 <Typography variant="h5" component="h3" color="secondary">
                     Walkers: {walkers.length}
                 </Typography>
-
+                
             </CardContent>
 
         </Card>

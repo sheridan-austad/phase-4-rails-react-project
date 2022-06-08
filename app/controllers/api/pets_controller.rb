@@ -20,6 +20,9 @@ class Api::PetsController < ApplicationController
       pets = Pet.find_by(id: params[:user_id])
       pets.delete
     end
+    
+    def order
+      Pet.all.order('name asc')
 
     private
 

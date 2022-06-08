@@ -4,4 +4,5 @@ class Pet < ApplicationRecord
     has_many :walkers, through: :appointments,  source: :walker
     has_one_attached :photo,  dependent: :destroy
 
+    Pet.all.order('name asc')
 end

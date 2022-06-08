@@ -78,7 +78,7 @@ function AppointmentCard({ appointment }) {
         })
             .catch(error => console.log(error))
     }
-
+console.log(appointment.appointment?.walk_time || appointment?.walk_time)
     return (
         <div>
             {/* creating the card */}
@@ -90,10 +90,10 @@ function AppointmentCard({ appointment }) {
                             Pet: {appointment?.pet_id}
                         </Typography>
                         <Typography variant="h5" component="h3" color="secondary">
-                            Owner: {appointment.owner?.name}
+                            Owner: {appointment.owner_id}
                         </Typography>
                         <Typography variant="h5" component="h3" color="secondary">
-                            Walker: {appointment?.walker?.name}
+                            Walker: {appointment?.walker_id}
                         </Typography>
                         <Typography variant="h5" component="h3" color="secondary">
                             Walk Time: {appointment.appointment?.walk_time || appointment?.walk_time}

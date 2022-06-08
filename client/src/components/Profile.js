@@ -3,6 +3,8 @@ import PetList from '../pages/PetList'
 import { UserContext } from './User'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { Button } from "../styles";
+
 
 function Profile() {
   const { user } = useContext(UserContext);
@@ -12,6 +14,7 @@ function Profile() {
   console.log(user.avatar)
   return (
     <div>
+      
       {user && <h2>Welcome back {user.name}!</h2>}
       <Card className="card" elevation={0}>
 
